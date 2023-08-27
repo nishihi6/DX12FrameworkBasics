@@ -1,4 +1,4 @@
-#include <Windows.h>
+//#include <Windows.h>	// プリコンパイル済みヘッダーに追加したのでコメントアウト
 #include "Window.h"
 
 LRESULT CALLBACK WindowProcedure(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) {

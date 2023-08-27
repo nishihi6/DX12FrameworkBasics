@@ -1,6 +1,6 @@
 #include "Application.h"
-#include <Windows.h>
-#include <cassert>
+//#include <Windows.h>	// プリコンパイル済みヘッダーに追加したのでコメントアウト
+//#include <cassert>	// プリコンパイル済みヘッダーに追加したのでコメントアウト
 
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	Application::Instance().Execute();
