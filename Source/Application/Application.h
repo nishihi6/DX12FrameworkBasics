@@ -5,14 +5,13 @@ class Application {
 public:
 	void Execute();
 
-private:
-	Window m_window;
-
-	Application() {}
-public:
 	static Application& Instance()
 	{
 		static Application instance;
 		return instance;
 	}
+private:
+	Window m_window;
+
+	Application() {}
 };
