@@ -1,6 +1,6 @@
-#pragma once
+ï»¿#pragma once
 
-// Šî–{
+// åŸºæœ¬
 #pragma comment(lib,"winmm.lib")
 
 #define NOMINMAX

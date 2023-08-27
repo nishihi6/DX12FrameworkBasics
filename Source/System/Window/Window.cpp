@@ -1,4 +1,4 @@
-//#include <Windows.h>	// ƒvƒŠƒRƒ“ƒpƒCƒ‹Ï‚Ýƒwƒbƒ_[‚É’Ç‰Á‚µ‚½‚Ì‚ÅƒRƒƒ“ƒgƒAƒEƒg
+ï»¿//#include <Windows.h>	// ãƒ—ãƒªã‚³ãƒ³ãƒ‘ã‚¤ãƒ«æ¸ˆã¿ãƒ˜ãƒƒãƒ€ãƒ¼ã«è¿½åŠ ã—ãŸã®ã§ã‚³ãƒ¡ãƒ³ãƒˆã‚¢ã‚¦ãƒˆ
 #include "Window.h"
 
 LRESULT CALLBACK WindowProcedure(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) {
@@ -28,16 +28,16 @@ bool Window::Create(int clientWidth, int clientHeight, const std::wstring& title
 	}
 
 	m_hWnd = CreateWindow(
-		windowClassName.c_str(),							// ƒEƒBƒ“ƒhƒEƒNƒ‰ƒX–¼
-		titleName.c_str(),									// ƒEƒBƒ“ƒhƒE‚Ìƒ^ƒCƒgƒ‹
-		WS_OVERLAPPEDWINDOW - WS_THICKFRAME,				// ƒEƒBƒ“ƒhƒEƒ^ƒCƒvi•W€ƒ^ƒCƒvj
-		0,													// ƒEƒBƒ“ƒhƒE‚ÌˆÊ’ui‚wj
-		0,													// ƒEƒBƒ“ƒhƒE‚ÌˆÊ’ui‚xj						
-		clientWidth,										// ƒEƒBƒ“ƒhƒE‚Ì•
-		clientHeight,										// ƒEƒBƒ“ƒhƒE‚Ì‚‚³			
-		nullptr,											// eƒEƒBƒ“ƒhƒE‚Ìƒnƒ“ƒhƒ‹
-		nullptr,											// ƒƒjƒ…[‚Ìƒnƒ“ƒhƒ‹
-		hInst,												// ƒCƒ“ƒXƒ^ƒ“ƒXƒnƒ“ƒhƒ‹ 
+		windowClassName.c_str(),							// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¯ãƒ©ã‚¹å
+		titleName.c_str(),									// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ã‚¿ã‚¤ãƒˆãƒ«
+		WS_OVERLAPPEDWINDOW - WS_THICKFRAME,				// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¿ã‚¤ãƒ—ï¼ˆæ¨™æº–ã‚¿ã‚¤ãƒ—ï¼‰
+		0,													// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ä½ç½®ï¼ˆï¼¸ï¼‰
+		0,													// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ä½ç½®ï¼ˆï¼¹ï¼‰						
+		clientWidth,										// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®å¹…
+		clientHeight,										// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®é«˜ã•			
+		nullptr,											// è¦ªã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ãƒãƒ³ãƒ‰ãƒ«
+		nullptr,											// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ãƒãƒ³ãƒ‰ãƒ«
+		hInst,												// ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ãƒãƒ³ãƒ‰ãƒ« 
 		this
 	);
 

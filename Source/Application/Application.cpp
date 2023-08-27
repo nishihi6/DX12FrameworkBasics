@@ -1,6 +1,6 @@
-#include "Application.h"
-//#include <Windows.h>	// ƒvƒŠƒRƒ“ƒpƒCƒ‹Ï‚İƒwƒbƒ_[‚É’Ç‰Á‚µ‚½‚Ì‚ÅƒRƒƒ“ƒgƒAƒEƒg
-//#include <cassert>	// ƒvƒŠƒRƒ“ƒpƒCƒ‹Ï‚İƒwƒbƒ_[‚É’Ç‰Á‚µ‚½‚Ì‚ÅƒRƒƒ“ƒgƒAƒEƒg
+ï»¿#include "Application.h"
+//#include <Windows.h>	// ãƒ—ãƒªã‚³ãƒ³ãƒ‘ã‚¤ãƒ«æ¸ˆã¿ãƒ˜ãƒƒãƒ€ãƒ¼ã«è¿½åŠ ã—ãŸã®ã§ã‚³ãƒ¡ãƒ³ãƒˆã‚¢ã‚¦ãƒˆ
+//#include <cassert>	// ãƒ—ãƒªã‚³ãƒ³ãƒ‘ã‚¤ãƒ«æ¸ˆã¿ãƒ˜ãƒƒãƒ€ãƒ¼ã«è¿½åŠ ã—ãŸã®ã§ã‚³ãƒ¡ãƒ³ãƒˆã‚¢ã‚¦ãƒˆ
 
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	Application::Instance().Execute();
@@ -13,7 +13,7 @@ void Application::Execute() {
 	static const int height = 720;
 
 	if (!m_window.Create(width, height, L"DX12-framework", L"Window")) {
-		assert(0 && "ƒEƒBƒ“ƒhƒEì¬¸”sB");
+		assert(0 && "ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½œæˆå¤±æ•—ã€‚");
 		return;
 	}
 
