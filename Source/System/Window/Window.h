@@ -1,7 +1,7 @@
-#pragma once
+﻿#pragma once
 
-//#include <Windows.h>	// �v���R���p�C���ς݃w�b�_�[�ɒǉ������̂ŃR�����g�A�E�g
-//#include <string>	// �v���R���p�C���ς݃w�b�_�[�ɒǉ������̂ŃR�����g�A�E�g
+//#include <Windows.h>	// プリコンパイル済みヘッダーに追加したのでコメントアウト
+//#include <string>	// プリコンパイル済みヘッダーに追加したのでコメントアウト
 
 class Window {
 public:
