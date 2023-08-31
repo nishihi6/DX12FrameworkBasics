@@ -23,6 +23,11 @@ void Application::Execute() {
 		return;
 	}
 
+	if (!GraphicsDevice::Instance().Init()) {
+		assert(0 && "グラフィックスデバイス初期化失敗。");
+		return;
+	}
+
 	while (true) {
 		if (!m_window.ProcessMessage())
 		{
