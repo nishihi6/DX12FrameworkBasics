@@ -23,7 +23,7 @@ void Application::Execute() {
 		return;
 	}
 
-	if (!GraphicsDevice::Instance().Init()) {
+	if (!GraphicsDevice::Instance().Init(m_window.GetWndHandle(), width, height)) {
 		assert(0 && "グラフィックスデバイス初期化失敗。");
 		return;
 	}
