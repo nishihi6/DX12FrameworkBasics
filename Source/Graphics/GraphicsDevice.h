@@ -2,7 +2,7 @@
 
 class GraphicsDevice {
 public:
-	bool Init();
+	bool Init(HWND hWnd, int w, int h);
 
 	static GraphicsDevice& Instance() {
 		static GraphicsDevice instance;
@@ -14,6 +14,8 @@ private:
 	bool CreateDevice();
 
 	bool CreateCommandList();
+
+	bool CreateSwapchain(HWND hWnd, int width, int height);
 
 	enum class GPUTier {
 		NVIDIA,

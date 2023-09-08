@@ -1,18 +1,23 @@
-#include "GraphicsDevice.h"
+ï»¿#include "GraphicsDevice.h"
 
-bool GraphicsDevice::Init() {
+bool GraphicsDevice::Init(HWND hWnd, int w, int h) {
 	if (!CreateFactory()) {
-		assert(0 && "ƒtƒ@ƒNƒgƒŠ[ì¬Ž¸”s");
+		assert(0 && "ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼ä½œæˆå¤±æ•—");
 		return false;
 	}
 
 	if (!CreateDevice()) {
-		assert(0 && "D3D12ƒfƒoƒCƒXì¬Ž¸”s");
+		assert(0 && "D3D12ãƒ‡ãƒã‚¤ã‚¹ä½œæˆå¤±æ•—");
 		return false;
 	}
 
 	if (!CreateCommandList()) {
-		assert(0 && "ƒRƒ}ƒ“ƒhƒŠƒXƒg‚Ìì¬Ž¸”s");
+		assert(0 && "ã‚³ãƒžãƒ³ãƒ‰ãƒªã‚¹ãƒˆã®ä½œæˆå¤±æ•—");
+		return false;
+	}
+
+	if (!CreateSwapchain(hWnd, w, h)) {
+		assert(0 && "ã‚¹ãƒ¯ãƒƒãƒ—ãƒã‚§ã‚¤ãƒ³ã®ä½œæˆå¤±æ•—");
 		return false;
 	}
 
@@ -107,13 +112,33 @@ bool GraphicsDevice::CreateCommandList() {
 	}
 
 	D3D12_COMMAND_QUEUE_DESC cmdQueueDesc = {};
-	cmdQueueDesc.Flags = D3D12_COMMAND_QUEUE_FLAG_NONE;				// ƒ^ƒCƒ€ƒAƒEƒg‚È‚µ
-	cmdQueueDesc.NodeMask = 0;										// ƒAƒ_ƒvƒ^[‚ð1‚Â‚µ‚©Žg‚í‚È‚¢‚Æ‚«‚Í0‚Å‚¢‚¢
-	cmdQueueDesc.Priority = D3D12_COMMAND_QUEUE_PRIORITY_NORMAL;	// ƒvƒ‰ƒCƒIƒŠƒeƒB‚Í“Á‚ÉŽw’è‚È‚µ
-	cmdQueueDesc.Type = D3D12_COMMAND_LIST_TYPE_DIRECT;				// ƒRƒ}ƒ“ƒhƒŠƒXƒg‚Æ‡‚í‚¹‚é
+	cmdQueueDesc.Flags = D3D12_COMMAND_QUEUE_FLAG_NONE;				// ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆãªã—
+	cmdQueueDesc.NodeMask = 0;										// ã‚¢ãƒ€ãƒ—ã‚¿ãƒ¼ã‚’1ã¤ã—ã‹ä½¿ã‚ãªã„ã¨ãã¯0ã§ã„ã„
+	cmdQueueDesc.Priority = D3D12_COMMAND_QUEUE_PRIORITY_NORMAL;	// ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£ã¯ç‰¹ã«æŒ‡å®šãªã—
+	cmdQueueDesc.Type = D3D12_COMMAND_LIST_TYPE_DIRECT;				// ã‚³ãƒžãƒ³ãƒ‰ãƒªã‚¹ãƒˆã¨åˆã‚ã›ã‚‹
 
-	// ƒLƒ…[¶¬
+	// ã‚­ãƒ¥ãƒ¼ç”Ÿæˆ
 	hr = m_pDevice->CreateCommandQueue(&cmdQueueDesc, IID_PPV_ARGS(&m_pCmdQueue));
+
+	if (FAILED(hr)) {
+		return false;
+	}
+
+	return true;
+}
+
+bool GraphicsDevice::CreateSwapchain(HWND hWnd, int width, int height) {
+	DXGI_SWAP_CHAIN_DESC1 swapchainDesc = {};
+	swapchainDesc.Width = width;
+	swapchainDesc.Height = height;
+	swapchainDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
+	swapchainDesc.SampleDesc.Count = 1;
+	swapchainDesc.BufferUsage = DXGI_USAGE_BACK_BUFFER;
+	swapchainDesc.BufferCount = 2;
+	swapchainDesc.SwapEffect = DXGI_SWAP_EFFECT_FLIP_DISCARD;
+	swapchainDesc.Flags = DXGI_SWAP_CHAIN_FLAG_ALLOW_MODE_SWITCH;
+
+	auto hr = m_pDxgiFactory->CreateSwapChainForHwnd(m_pCmdQueue.Get(), hWnd, &swapchainDesc, nullptr, nullptr, (IDXGISwapChain1**)m_pSwapChain.GetAddressOf());
 
 	if (FAILED(hr)) {
 		return false;
