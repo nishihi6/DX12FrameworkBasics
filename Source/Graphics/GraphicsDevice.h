@@ -1,5 +1,7 @@
 ﻿#pragma once
 
+//#include "RTVHeap/RTVHeap.h"
+
 class GraphicsDevice {
 public:
 	bool Init(HWND hWnd, int w, int h);
@@ -16,6 +18,8 @@ private:
 	bool CreateCommandList();
 
 	bool CreateSwapchain(HWND hWnd, int width, int height);
+
+	bool CreateSwapchainRTV();
 
 	enum class GPUTier {
 		NVIDIA,
@@ -34,6 +38,9 @@ private:
 	ComPtr<ID3D12CommandQueue>				m_pCmdQueue = nullptr;
 	
 	ComPtr<IDXGISwapChain4>		m_pSwapChain = nullptr;
+
+	std::array<ComPtr<ID3D12Resource>, 2>	m_pSwapchainBuffers;
+	std::unique_ptr<RTVHeap>	m_pRTVHeap = nullptr;
 
 	GraphicsDevice() {}
 	~GraphicsDevice() {}
