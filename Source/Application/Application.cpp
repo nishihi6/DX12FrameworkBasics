@@ -29,9 +29,10 @@ void Application::Execute() {
 	}
 
 	while (true) {
-		if (!m_window.ProcessMessage())
-		{
+		if (!m_window.ProcessMessage()) {
 			break;
 		}
+
+		GraphicsDevice::Instance().ScreenFlip();
 	}
 }
