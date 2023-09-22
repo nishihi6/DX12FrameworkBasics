@@ -3,9 +3,9 @@
 void Mesh::Create(GraphicsDevice* pGraphicsDevice) {
 	m_pDevice = pGraphicsDevice;
 
-	m_vertices[0] = { -1.0f, -1.0f };
-	m_vertices[1] = {  1.0f,  1.0f };
-	m_vertices[2] = {  0.0f,  1.0f };
+	m_vertices[0] = { -0.75f, -0.75f, 0.0f };
+	m_vertices[1] = {   0.0f,  0.75f, 0.0f };
+	m_vertices[2] = {  0.75f, -0.75f, 0.0f };
 
 	D3D12_HEAP_PROPERTIES heapProp = {};
 	heapProp.Type = D3D12_HEAP_TYPE_UPLOAD;
