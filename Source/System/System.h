@@ -7,3 +7,5 @@
 #include "../Graphics/GraphicsDevice.h"
 
 #include "../Graphics/Mesh/Mesh.h"
+
+#include "../Graphics/Shader/Shader.h"

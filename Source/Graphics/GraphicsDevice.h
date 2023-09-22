@@ -6,6 +6,8 @@ class GraphicsDevice {
 public:
 	bool Init(HWND hWnd, int w, int h);
 
+	void Prepare();
+
 	void ScreenFlip();
 
 	void WaitForCommandQueue();

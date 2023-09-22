@@ -44,16 +44,30 @@ bool GraphicsDevice::Init(HWND hWnd, int w, int h) {
 	return true;
 }
 
-void GraphicsDevice::ScreenFlip() {
+void GraphicsDevice::Prepare() {
 	auto bbIdx = m_pSwapChain->GetCurrentBackBufferIndex();
-	SetResourceBarrier(m_pSwapchainBuffers[bbIdx].Get(),
-		D3D12_RESOURCE_STATE_PRESENT, D3D12_RESOURCE_STATE_RENDER_TARGET);
+	SetResourceBarrier(m_pSwapchainBuffers[bbIdx].Get(), D3D12_RESOURCE_STATE_PRESENT, D3D12_RESOURCE_STATE_RENDER_TARGET);
+
+	auto rtvH = m_pRTVHeap->GetRTVCPUHandle(bbIdx);
+	m_pCmdList->OMSetRenderTargets(1, &rtvH, false, nullptr);
+
+	float clearColor[] = { 1.0f,0.0f,1.0f,1.0f }; // 紫色
+	m_pCmdList->ClearRenderTargetView(rtvH, clearColor, 0, nullptr);
+}
+
+void GraphicsDevice::ScreenFlip() {
+	/*
+	auto bbIdx = m_pSwapChain->GetCurrentBackBufferIndex();
+	SetResourceBarrier(m_pSwapchainBuffers[bbIdx].Get(), D3D12_RESOURCE_STATE_PRESENT, D3D12_RESOURCE_STATE_RENDER_TARGET);
 
 	auto rtvH = m_pRTVHeap->GetRTVCPUHandle(bbIdx);
 	m_pCmdList->OMSetRenderTargets(1, &rtvH, false, nullptr);
 
 	float clearColor[] = { 1.0f, 0.0f, 1.0f, 1.0f };
 	m_pCmdList->ClearRenderTargetView(rtvH, clearColor, 0, nullptr);
+	*/
+
+	auto bbIdx = m_pSwapChain->GetCurrentBackBufferIndex();
 
 	SetResourceBarrier(m_pSwapchainBuffers[bbIdx].Get(), D3D12_RESOURCE_STATE_RENDER_TARGET, D3D12_RESOURCE_STATE_PRESENT);
 
